@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>posts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let post of posts" size="12" size-md="4">
+        <ion-card >
+          <ion-card-header>
+            <ion-card-title>
+              {{post.Titulo}}
+            </ion-card-title>
+            <ion-card-subtitle>
+              {{post.SubTitulo}}
+            </ion-card-subtitle>
+            <ion-datetime>
+              {{post.Fecha}}
+            </ion-datetime>
+          </ion-card-header>
+          <img [src]=" post.Imagen && post.Imagen.formats.thumbnail.url ? 'http://localhost:1337' +  post.Imagen.formats.thumbnail.url : 'https://www.colombianosune.com/sites/default/files/asociaciones/NO_disponible-43_7.jpg'" alt="">
+          <ion-card-content>
+            {{post.Descripcion}}
+            <div>
+              <ion-button color="secondary">Guardar</ion-button>
+              <ion-button color="danger" (click)="deletePost(post.id)">Eliminar</ion-button>
+            </div>
+      </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" routerLink="/post-form">
+      <ion-icon name="arrow-forward-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
